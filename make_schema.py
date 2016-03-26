@@ -37,7 +37,6 @@ if __name__ == "__main__":
     # Get the datafile path from the command line.
     parser = argparse.ArgumentParser()
     parser.add_argument("schemaFormat",    help="The format to make the metadata schema for.")
-    #parser.add_argument("metadataPath",    help="Path to the input metadata schema JSON.")
     parser.add_argument("-v", "--verbose", help="Increase output verbosity", action="store_true")
     args = parser.parse_args()
 
@@ -75,7 +74,7 @@ if __name__ == "__main__":
     try:
         m = importlib.import_module(module_name)
     except ImportError, e:
-        print("* ERROR: Invalid data format '%s' - %s." % (schema_format, str(e).lower()))
+        raise ImportError("* ERROR: Invalid data format '%s' - %s." % (schema_format, str(e).lower()))
 
     # Make the HTML schema files.
     html_path = m.the_schema.make_html_schema(metadata_path)

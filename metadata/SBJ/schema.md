@@ -1,26 +1,26 @@
-#<a name='top'>The MoEDAL TASL Raw Scan Images: Metadata Schema</a>
+#<a name='top'>The MoEDAL NTD TASL scan Zooniverse subject images: Metadata Schema</a>
 
 
 ##Overview
-This data format describes the raw scan images of the Nuclear Track Detector (NTD) sheets provided by TASL.
+This data format describes the images extracted from the Nuclear Track Detector (NTD) scan images provided by TASL for use as subjects in Zooniverse/Panoptes Citizen Science projects. 
 
 ##The records
-Each record represented by this metadata schema represents an image file provided by TASL. Each image is a montage of all accepted 'tracks' (pits) and their position coordinates from a particular scan after TASL's discrimination filters have been applied. 
+Each record represented by this metadata schema represents an image file extracted from the scans of the Nuclear Track Detector (NTD) plastic sheets. Each image focusses on an accepted 'track' (pit) identified by TASLs discrimination filters. The position coordinates of each point in the plastic are also recorded in the image. After extraction from the raw bitmap, the images are scaled up by a factor of 6 (with no interpolation or smoothing) to make them large enough for the Panoptes user interface. 
 
 ##The elements
 * [ID](#id) (`id`)
+* [Scan ID](#scan_id) (`scan_id`)
 * [Batch ID](#batch_id) (`batch_id`)
 * [Experiment](#experiment) (`experiment`)
 * [Owner](#owner) (`owner`)
+* [Data format](#data_format) (`data_format`)
 * [Filename](#filename) (`filename`)
 * [File format](#file_format) (`file_format`)
-* [Data format](#data_format) (`data_format`)
+* [File size](#file_size) (`file_size`)
 * [Image width](#image_width) (`image_width`)
 * [Image height](#image_height) (`image_height`)
-* [File size](#file_size) (`file_size`)
-* [Number of individual scan rows](#n_scan_rows) (`n_scan_rows`)
-* [Number of individual scan columns](#n_scan_columns) (`n_scan_columns`)
-* [Number of individual scan images](#n_scans) (`n_scans`)
+* [Scan row](#scan_row) (`scan_row`)
+* [Scan column](#scan_column) (`scan_column`)
 * [Scan magnification](#magnification) (`magnification`)
 
 The element details are provided in the subsections below.
@@ -28,6 +28,14 @@ The element details are provided in the subsections below.
 ###<a name='id'>ID</a>
 The record ID.
 * _Field name_: `id`
+* _Format_: a string
+* _Required?_ Yes.
+
+_Back to the [top](#top)._
+
+###<a name='scan_id'>Scan ID</a>
+The ID of the scan to which the image belongs.
+* _Field name_: `scan_id`
 * _Format_: a string
 * _Required?_ Yes.
 
@@ -57,6 +65,14 @@ The owner of the data.
 
 _Back to the [top](#top)._
 
+###<a name='data_format'>Data format</a>
+The data format code (with respect to the data management plan).
+* _Field name_: `data_format`
+* _Format_: a three-letter string
+* _Required?_ Yes.
+
+_Back to the [top](#top)._
+
 ###<a name='filename'>Filename</a>
 The filename of the file represented by the record.
 * _Field name_: `filename`
@@ -73,10 +89,11 @@ The file format of the image.
 
 _Back to the [top](#top)._
 
-###<a name='data_format'>Data format</a>
-The data format code (with respect to the data management plan).
-* _Field name_: `data_format`
-* _Format_: a three-letter string
+###<a name='file_size'>File size</a>
+The size of the file represented by the record in bytes.
+* _Field name_: `file_size`
+* _Units_: bytes
+* _Format_: an integer
 * _Required?_ Yes.
 
 _Back to the [top](#top)._
@@ -99,42 +116,21 @@ The height of the image in pixels.
 
 _Back to the [top](#top)._
 
-###<a name='file_size'>File size</a>
-The size of the file represented by the record in bytes.
-* _Field name_: `file_size`
-* _Units_: bytes
+###<a name='scan_row'>Scan row</a>
+The TASL scan images contain multiple pit candidate images
+arranged in a grid. This element records from which row the
+subject image came.
+* _Field name_: `scan_row`
 * _Format_: an integer
 * _Required?_ Yes.
 
 _Back to the [top](#top)._
 
-###<a name='n_scan_rows'>Number of individual scan rows</a>
+###<a name='scan_column'>Scan column</a>
 The TASL scan images contain multiple pit candidate images
-arranged in a grid. This element records the number of rows
-in the file.
-* _Field name_: `n_scan_rows`
-* _Format_: an integer
-* _Required?_ Yes.
-
-_Back to the [top](#top)._
-
-###<a name='n_scan_columns'>Number of individual scan columns</a>
-The TASL scan images contain multiple pit candidate images
-arranged in a grid. This element records the number of rows
-in the file.
-* _Field name_: `n_scan_columns`
-* _Format_: an integer
-* _Required?_ Yes.
-
-_Back to the [top](#top)._
-
-###<a name='n_scans'>Number of individual scan images</a>
-The TASL scan images contain multiple pit candidate images
-arranged in a table. This element records the number of scans
-in the file. Note that this will not necessarily be the
-rows multiplied by the columns as not every space in the
-table is full.
-* _Field name_: `n_scans`
+arranged in a grid. This element records from which column the
+subject image came.
+* _Field name_: `scan_column`
 * _Format_: an integer
 * _Required?_ Yes.
 

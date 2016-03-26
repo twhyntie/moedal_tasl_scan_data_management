@@ -129,6 +129,18 @@ class MetadataSchema(object):
         if "units" in el.keys():
             self.__elements[el["order"]].set_units(el["units"])
 
+    def get_csv_header_string(self):
+
+        s = ""
+
+        for i in sorted(self.__elements.keys()):
+
+            s += self.__elements[i].get_field_name()
+
+            if i + 1 < len(self.__elements): s += ","
+
+        return s
+
     def make_html_schema(self, output_path):
         """ Creates an HTML page describing the element. """
 
