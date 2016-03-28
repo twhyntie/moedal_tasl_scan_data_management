@@ -1,0 +1,5 @@
+#Python
+*.py[c,o]
+
+#Old stuff
+old/
